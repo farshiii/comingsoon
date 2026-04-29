@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>Concepto Ads n Dev | Digital Marketing Agency</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
@@ -51,6 +50,7 @@
             height: 100%;
             z-index: -2;
             overflow: hidden;
+            pointer-events: none;
         }
 
         .bg-circle {
@@ -60,43 +60,14 @@
             animation: float 20s infinite linear;
         }
 
-        .circle-1 {
-            width: 400px;
-            height: 400px;
-            top: 5%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .circle-2 {
-            width: 250px;
-            height: 250px;
-            top: 70%;
-            right: 15%;
-            animation-delay: 7s;
-        }
-
-        .circle-3 {
-            width: 500px;
-            height: 500px;
-            bottom: 5%;
-            left: 25%;
-            animation-delay: 14s;
-        }
+        .circle-1 { width: 400px; height: 400px; top: 5%; left: 10%; animation-delay: 0s; }
+        .circle-2 { width: 250px; height: 250px; top: 70%; right: 15%; animation-delay: 7s; }
+        .circle-3 { width: 500px; height: 500px; bottom: 5%; left: 25%; animation-delay: 14s; }
 
         @keyframes float {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0.3;
-            }
-            50% {
-                transform: translateY(-40px) rotate(180deg);
-                opacity: 0.6;
-            }
-            100% {
-                transform: translateY(0) rotate(360deg);
-                opacity: 0.3;
-            }
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+            50% { transform: translateY(-40px) rotate(180deg); opacity: 0.6; }
+            100% { transform: translateY(0) rotate(360deg); opacity: 0.3; }
         }
 
         /* Header & Navigation */
@@ -122,6 +93,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .logo {
@@ -134,13 +106,8 @@
             align-items: center;
         }
 
-        .logo span {
-            color: var(--primary-color);
-        }
-
-        .logo img {
-            height: 50px;
-        }
+        .logo span { color: var(--primary-color); }
+        .logo img { height: 50px; }
 
         nav ul {
             display: flex;
@@ -157,10 +124,7 @@
             position: relative;
         }
 
-        nav a:hover {
-            color: var(--primary-color);
-        }
-
+        nav a:hover { color: var(--primary-color); }
         nav a::after {
             content: '';
             position: absolute;
@@ -172,16 +136,14 @@
             transition: width 0.3s ease;
         }
 
-        nav a:hover::after {
-            width: 100%;
-        }
+        nav a:hover::after { width: 100%; }
 
         .mobile-menu-btn {
             display: none;
             background: none;
             border: none;
             color: var(--primary-color);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
         }
 
@@ -196,10 +158,7 @@
             padding-top: 100px;
         }
 
-        .hero-content {
-            max-width: 900px;
-            z-index: 1;
-        }
+        .hero-content { max-width: 900px; z-index: 1; }
 
         .hero h1 {
             font-family: 'Montserrat', sans-serif;
@@ -211,7 +170,6 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            position: relative;
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s forwards 0.5s;
@@ -226,11 +184,6 @@
             animation: fadeInUp 1s forwards 0.7s;
         }
 
-        .highlight {
-            color: var(--primary-color);
-            font-weight: 600;
-        }
-
         .cta-buttons {
             display: flex;
             gap: 20px;
@@ -239,6 +192,7 @@
             opacity: 0;
             transform: translateY(30px);
             animation: fadeInUp 1s forwards 0.9s;
+            flex-wrap: wrap;
         }
 
         .btn {
@@ -279,10 +233,7 @@
         }
 
         /* Section Styling */
-        section {
-            padding: 100px 0;
-            position: relative;
-        }
+        section { padding: 100px 0; position: relative; }
 
         .section-header {
             text-align: center;
@@ -379,108 +330,199 @@
             font-size: 0.9rem;
         }
 
-        /* Pricing Section */
-        .pricing-section {
-            background: var(--section-bg);
-        }
-
-        .pricing-grid {
+        /* PRICING LAYOUT */
+        .pricing-section { background: var(--section-bg); }
+        .pricing-row {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            margin-bottom: 50px;
         }
 
         .pricing-card {
             background: var(--card-bg);
-            border-radius: 15px;
-            padding: 40px 30px;
-            transition: all 0.4s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-            overflow: hidden;
+            border-radius: 24px;
+            padding: 32px 24px;
+            border: 1px solid rgba(255,255,255,0.08);
+            backdrop-filter: blur(8px);
+            transition: all 0.35s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
             opacity: 0;
-            transform: translateY(40px);
-        }
-
-        .pricing-card.popular {
-            border-color: var(--primary-color);
-            transform: scale(1.05);
-        }
-
-        .pricing-card.popular::before {
-            content: ' MOST POPULAR';
-            position: absolute;
-            top: 15px;
-            right: -40px;
-            background: var(--primary-color);
-            color: var(--secondary-color);
-            padding: 15px 30px;
-            font-weight: 700;
-            font-size: 0.8rem;
-            transform: rotate(45deg);
+            transform: translateY(30px);
         }
 
         .pricing-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary-color);
+            box-shadow: 0 20px 32px rgba(0,0,0,0.6);
         }
 
-        .pricing-card.popular:hover {
-            transform: scale(1.05) translateY(-10px);
+        .pricing-card.popular {
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 8px 25px rgba(183,255,0,0.15);
+            position: relative;
+            overflow: hidden;
         }
 
-        .pricing-header {
-            text-align: center;
-            margin-bottom: 30px;
+        .popular-badge {
+            position: absolute;
+            top: 12px;
+            right: -28px;
+            background: var(--primary-color);
+            color: #000;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 6px 40px;
+            transform: rotate(45deg);
+            white-space: nowrap;
+            letter-spacing: 1px;
         }
 
+        /* ELITE CARD */
+        .elite-wrapper {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .pricing-card-elite {
+            max-width: 900px;
+            width: 100%;
+            background: linear-gradient(135deg, rgba(30,30,35,0.95), rgba(0,0,0,0.9));
+            border-radius: 32px;
+            padding: 40px 35px;
+            border: 2px solid var(--primary-color);
+            backdrop-filter: blur(12px);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            position: relative;
+        }
+
+        .pricing-card-elite:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 40px rgba(183,255,0,0.25);
+        }
+
+        .elite-tag {
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: var(--primary-color);
+            color: #000;
+            font-weight: 800;
+            padding: 6px 24px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .elite-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(183,255,0,0.3);
+            padding-bottom: 20px;
+        }
+
+        .elite-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary-color);
+        }
+
+        .elite-price { font-size: 2.6rem; font-weight: 800; color: white; }
+        .elite-price span { font-size: 1rem; color: #aaa; font-weight: 400; }
+
+        .includes-pro-badge {
+            background: rgba(183, 255, 0, 0.15);
+            border-left: 4px solid var(--primary-color);
+            padding: 12px 18px;
+            border-radius: 12px;
+            margin: 15px 0 20px;
+            font-weight: 600;
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+        .includes-pro-badge i { margin-right: 10px; }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin: 20px 0 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #e0e0e0;
+            font-size: 0.95rem;
+        }
+
+        .feature-item i { color: var(--primary-color); width: 22px; font-size: 1rem; }
+
+        .elite-divider {
+            margin: 15px 0 10px;
+            font-weight: 800;
+            color: var(--primary-color);
+            letter-spacing: 0.5px;
+            font-size: 1.1rem;
+            grid-column: 1 / -1;
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+        }
+
+        /* Common pricing styles */
+        .pricing-header { text-align: center; margin-bottom: 20px; }
         .pricing-name {
             font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-            color: var(--accent-color);
+            font-size: 1.9rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, var(--primary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .pricing-price {
-            font-size: 3rem;
-            font-weight: 700;
+            font-size: 2.5rem;
+            font-weight: 800;
             color: var(--primary-color);
+            line-height: 1.2;
         }
 
-        .pricing-price span {
-            font-size: 1rem;
-            color: var(--text-light);
-        }
-
-        .pricing-description {
-            text-align: center;
-            color: var(--text-light);
-            margin-bottom: 30px;
-            font-style: italic;
-        }
+        .pricing-price span { font-size: 1rem; color: #aaa; font-weight: 400; }
 
         .pricing-features {
             list-style: none;
-            margin-bottom: 40px;
+            margin: 20px 0 30px;
+            flex-grow: 1;
         }
 
         .pricing-features li {
-            color: var(--text-light);
-            margin-bottom: 15px;
+            color: #ddd;
+            margin-bottom: 14px;
             display: flex;
-            align-items: center;
-            gap: 10px;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 0.9rem;
+            line-height: 1.4;
         }
 
-        .pricing-features li i {
-            color: var(--primary-color);
-        }
+        .pricing-features li i { color: var(--primary-color); margin-top: 3px; min-width: 16px; }
 
         .pricing-btn {
-            display: block;
             width: 100%;
             text-align: center;
+            justify-content: center;
         }
 
         /* Contact Section */
@@ -508,10 +550,7 @@
             line-height: 1.8;
         }
 
-        .contact-details {
-            list-style: none;
-            margin-top: 30px;
-        }
+        .contact-details { list-style: none; margin-top: 30px; }
 
         .contact-details li {
             color: var(--text-light);
@@ -540,9 +579,7 @@
             backdrop-filter: blur(10px);
         }
 
-        .form-group {
-            margin-bottom: 25px;
-        }
+        .form-group { margin-bottom: 25px; }
 
         .form-group label {
             display: block;
@@ -610,13 +647,9 @@
             margin-bottom: 20px;
         }
 
-        .footer-links {
-            list-style: none;
-        }
+        .footer-links { list-style: none; }
 
-        .footer-links li {
-            margin-bottom: 12px;
-        }
+        .footer-links li { margin-bottom: 12px; }
 
         .footer-links a {
             color: var(--text-light);
@@ -667,24 +700,15 @@
 
         /* Animations */
         @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInLeft {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes fadeInRight {
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .animate-on-scroll {
@@ -742,32 +766,53 @@
             box-shadow: 0 10px 20px rgba(183, 255, 0, 0.3);
         }
 
-        /* Responsive Styles */
+        /* ==================== RESPONSIVE STYLES ==================== */
+        
+        /* Large Tablets & Small Laptops */
+        @media (max-width: 1024px) {
+            .hero h1 { font-size: 3.5rem; }
+            .section-title { font-size: 2.5rem; }
+            
+            .pricing-row {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            
+            .pricing-card { padding: 25px 20px; }
+            .pricing-name { font-size: 1.5rem; }
+            .pricing-price { font-size: 2rem; }
+        }
+
+        /* Tablets */
         @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3.5rem;
+            .pricing-row {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .section-title {
-                font-size: 2.5rem;
+            .pricing-row .pricing-card:nth-child(3) {
+                grid-column: span 2;
+                max-width: 450px;
+                justify-self: center;
             }
             
-            .services-grid, .pricing-grid {
-                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            .services-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             }
         }
 
+        /* Small Tablets & Large Phones */
         @media (max-width: 768px) {
             .header-container {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row;
+                align-items: center;
             }
             
             .mobile-menu-btn {
                 display: block;
-                position: absolute;
-                top: 25px;
-                right: 20px;
             }
             
             nav {
@@ -778,7 +823,7 @@
             }
             
             nav.active {
-                max-height: 300px;
+                max-height: 400px;
                 margin-top: 20px;
             }
             
@@ -787,13 +832,8 @@
                 gap: 15px;
             }
             
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1.1rem; }
             
             .cta-buttons {
                 flex-direction: column;
@@ -806,6 +846,20 @@
                 justify-content: center;
             }
             
+            .section-title { font-size: 2.2rem; }
+            
+            .pricing-row {
+                grid-template-columns: 1fr;
+                max-width: 450px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .pricing-row .pricing-card:nth-child(3) {
+                grid-column: span 1;
+                max-width: none;
+            }
+            
             .pricing-card.popular {
                 transform: scale(1);
             }
@@ -813,24 +867,99 @@
             .pricing-card.popular:hover {
                 transform: translateY(-10px);
             }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+            
+            .elite-header {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .pricing-card-elite {
+                padding: 30px 25px;
+            }
         }
 
+        /* Mobile Phones */
         @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2.2rem;
+            .container { padding: 0 15px; }
+            
+            .hero {
+                padding-top: 120px;
+                min-height: auto;
+                padding-bottom: 60px;
             }
             
-            .section-title {
-                font-size: 2rem;
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
+            
+            .section-title { font-size: 1.8rem; }
+            .section-subtitle { font-size: 1rem; }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
             }
             
-            .service-card, .pricing-card, .contact-form {
+            .service-card {
                 padding: 30px 20px;
             }
             
-            .services-grid, .pricing-grid {
+            .pricing-card {
+                padding: 25px 20px;
+            }
+            
+            .pricing-name { font-size: 1.5rem; }
+            .pricing-price { font-size: 2rem; }
+            
+            .contact-form {
+                padding: 25px 20px;
+            }
+            
+            .pricing-card-elite {
+                padding: 25px 20px;
+            }
+            
+            .elite-name { font-size: 1.8rem; }
+            .elite-price { font-size: 2rem; }
+            
+            .features-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+            
+            .popular-badge {
+                font-size: 0.65rem;
+                padding: 4px 35px;
+                right: -35px;
+            }
+        }
+
+        /* Very Small Phones */
+        @media (max-width: 380px) {
+            .hero h1 { font-size: 1.7rem; }
+            .section-title { font-size: 1.6rem; }
+            .pricing-name { font-size: 1.3rem; }
+            .pricing-price { font-size: 1.8rem; }
+            .elite-name { font-size: 1.5rem; }
+            .elite-price { font-size: 1.8rem; }
+            .btn { padding: 12px 20px; font-size: 0.9rem; }
         }
     </style>
 </head>
@@ -988,81 +1117,97 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
+    <!-- PRICING SECTION -->
     <section id="pricing" class="pricing-section">
         <div class="container">
             <div class="section-header animate-on-scroll">
-                <h2 class="section-title">Pricing Plans</h2>
-                <p class="section-subtitle">Choose the plan that fits your business needs and budget</p>
+                <h2 class="section-title">Invest in Growth</h2>
+                <p class="section-subtitle">Choose your path — from essential startup to full-scale domination</p>
             </div>
             
-            <div class="pricing-grid">
-                <!-- Starter Plan -->
-                <!-- 
+            <!-- Row 1: Starter, Growth, Pro -->
+            <div class="pricing-row">
+                <!-- STARTER -->
                 <div class="pricing-card animate-on-scroll">
                     <div class="pricing-header">
-                        <h3 class="pricing-name">Starter Package</h3>
-                        <div class="pricing-price">30,000<span>/month</span></div>
-                        <p class="pricing-description">Best for small businesses & startups</p>
+                        <div class="pricing-name">STARTER</div>
+                        <div class="pricing-price">₹15,000<span>/month</span></div>
                     </div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Social media management (1 platforms)</li>
-                        <li><i class="fas fa-check"></i> 8 posts/month</li>
-                        <li><i class="fas fa-check"></i> 4 video + 4 Poster</li>
-                        <li><i class="fas fa-check"></i> Ads Management</li>
-                        <li><i class="fas fa-check"></i> Basic Seo</li>
-                        <li><i class="fas fa-check"></i> 4 Creative Poster</li>
+                        <li><i class="fas fa-palette"></i> 4 Poster Designs</li>
+                        <li><i class="fas fa-video"></i> 4 Promotional Videos</li>
+                        <li><i class="fas fa-users"></i> Social Media Setup (Complete Profile Optimization)</li>
+                        <li><i class="fas fa-chart-line"></i> Monthly Report (Performance Highlights)</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary pricing-btn">Get Started</a>
-                </div>
-                -->
-                <!-- Growth Plan -->
-                <div class="pricing-card popular animate-on-scroll">
-                    <div class="pricing-header">
-                        <h3 class="pricing-name">Growth Package</h3>
-                        <div class="pricing-price">29,999<span>/month</span></div>
-                        <p class="pricing-description">Best for growing brands</p>
-                    </div>
-                    <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Social media Management</li>
-                        <li><i class="fas fa-check"></i> Content Creation</li>
-                        <li><i class="fas fa-check"></i> Public Challenges</li>
-                        <li><i class="fas fa-check"></i> SM Posters</li>
-                        <li><i class="fas fa-check"></i> Basic SEO optimization</li>
-                        <li><i class="fas fa-check"></i> Meta Ads management (ad spend not included)</li>
-                        <li><i class="fas fa-check"></i> Monthly performance reports</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-primary pricing-btn">Choose Plan</a>
+                    <a href="#contact" class="btn btn-primary pricing-btn">Start Now</a>
                 </div>
                 
-                <!-- Premium Plan -->
-                <div class="pricing-card animate-on-scroll">
+                <!-- GROWTH (popular) -->
+                <div class="pricing-card popular animate-on-scroll">
+                    <div class="popular-badge">🔥 MOST POPULAR</div>
                     <div class="pricing-header">
-                        <h3 class="pricing-name">Premium Package</h3>
-                        <div class="pricing-price">49,000<span>/month</span></div>
-                        <p class="pricing-description">Best for established businesses</p>
+                        <div class="pricing-name">GROWTH</div>
+                        <div class="pricing-price">₹30,000<span>/month</span></div>
                     </div>
                     <ul class="pricing-features">
-                        <li><i class="fas fa-check"></i> Includes Everything in Growth Package</li>
-                        <li><i class="fas fa-check"></i> Social media Campaigns</li>
-                        <li><i class="fas fa-check"></i> Professional Food Photography</li>
-                        <li><i class="fas fa-check"></i> Professional Content Creation</li>
-                        <li><i class="fas fa-check"></i> SEO optimization</li>
-                        <li><i class="fas fa-check"></i> Digital Menu optimization</li>
-                        <li><i class="fas fa-check"></i> Google & Meta Ads management (ad spend not included)</li>
-                        <li><i class="fas fa-check"></i> Whatsapp Marketing and Automation</li>
-                        <li><i class="fas fa-check"></i> Monthly performance reports</li>
+                        <li><i class="fas fa-image"></i> 6 Graphic Posts / Month</li>
+                        <li><i class="fas fa-chart-simple"></i> Meta Ads Management (Ad spend separate)</li>
+                        <li><i class="fas fa-video"></i> 6 Promo Videos / Month</li>
+                        <li><i class="fas fa-gear"></i> Social Media Setup + Strategy</li>
+                        <li><i class="fas fa-magnifying-glass"></i> SEO Optimization (On-page & Local)</li>
+                        <li><i class="fas fa-chart-line"></i> Bi-Weekly Reports (Performance analysis)</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary pricing-btn">Go Premium</a>
+                    <a href="#contact" class="btn btn-primary pricing-btn">Choose Growth</a>
+                </div>
+                
+                <!-- PRO -->
+                <div class="pricing-card animate-on-scroll">
+                    <div class="pricing-header">
+                        <div class="pricing-name">PRO</div>
+                        <div class="pricing-price">₹50,000<span>/month</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fas fa-image"></i> 6–8 Graphic Posts / Month</li>
+                        <li><i class="fas fa-camera"></i> 6 Professional Photographs</li>
+                        <li><i class="fas fa-film"></i> 8 Video Productions (Reels / Stories / Promo)</li>
+                        <li><i class="fas fa-magnifying-glass-chart"></i> SEO + Full Website Audit & Technical SEO</li>
+                        <li><i class="fas fa-ad"></i> Full Meta & Google Ads Management (Concierge)</li>
+                        <li><i class="fas fa-chart-line"></i> Weekly Reports + Advanced Analytics</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary pricing-btn">Go Pro</a>
                 </div>
             </div>
-            
-            <div class="section-header animate-on-scroll" style="margin-top: 80px;">
-                <h3 class="section-title" style="font-size: 2rem;">Custom Plans Available</h3>
-                <p class="section-subtitle">Need something tailored? We build custom solutions based on your goals and budget.</p>
-                <a href="#contact" class="btn btn-secondary" style="margin-top: 20px;">
-                    <i class="fas fa-cogs"></i> Request Custom Plan
-                </a>
+
+            <!-- ELITE CARD -->
+            <div class="elite-wrapper">
+                <div class="pricing-card-elite animate-on-scroll">
+                    <div class="elite-tag">★ EXCLUSIVE ELITE ★</div>
+                    <div class="elite-header">
+                        <span class="elite-name">ELITE</span>
+                        <span class="elite-price">₹80,000 <span>/month</span></span>
+                    </div>
+                    
+                    <div class="includes-pro-badge">
+                        <i class="fas fa-check-circle"></i> Includes Everything in Pro Plan:
+                    </div>
+                    
+                    <div class="features-grid">
+                        <div class="elite-divider"><i class="fas fa-gem"></i> EXCLUSIVE ELITE FEATURES</div>
+                        <div class="feature-item"><i class="fas fa-user-tie"></i> Dedicated Team </div>
+                        <div class="feature-item"><i class="fab fa-whatsapp"></i> 24/7 WhatsApp Support </div>
+                        <div class="feature-item"><i class="fas fa-laptop-code"></i> Custom High-Quality Website </div>
+                        <div class="feature-item"><i class="fas fa-cloud-upload-alt"></i> Web Management & Monthly Updates</div>
+                        <div class="feature-item"><i class="fas fa-chart-line"></i> Quarterly Growth Strategy & Performance Summit</div>
+                        <div class="feature-item"><i class="fas fa-infinity"></i> Priority Creative Production & Trend‑First Execution</div>
+                    </div>
+                    <a href="#contact" class="btn btn-primary pricing-btn" style="background: var(--primary-color); color:#000; font-weight:800; padding: 14px;">Claim Elite Experience →</a>
+                </div>
+            </div>
+
+            <div class="section-header animate-on-scroll" style="margin-top: 70px;">
+                <h3 class="section-title" style="font-size: 1.9rem;">Tailored for Your Ambition</h3>
+                <p class="section-subtitle">Custom enterprise solutions & hybrid plans available upon request.</p>
+                <a href="#contact" class="btn btn-secondary" style="margin-top: 15px;"><i class="fas fa-crown"></i> Request Custom Quote</a>
             </div>
         </div>
     </section>
@@ -1211,7 +1356,7 @@
                         </div>
                         
                         <button type="submit" class="btn btn-primary" style="width: 100%;">
-                            <i class="fas fa-paper-plane"></i> Temporarily Unavailable
+                            <i class="fas fa-paper-plane"></i> Send Message
                         </button>
                     </form>
                 </div>
@@ -1251,6 +1396,7 @@
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
+                
                 <div class="footer-col">
                     <h4>Our Services</h4>
                     <ul class="footer-links">
@@ -1349,16 +1495,10 @@
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Get form values
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
-            const service = document.getElementById('service').value;
-            const message = document.getElementById('message').value;
             
-            // In a real application, you would send this data to your server
             alert(`Thank you, ${name}! We have received your message and will contact you at ${email} soon.`);
-            
-            // Reset form
             contactForm.reset();
         });
         
@@ -1380,9 +1520,8 @@
             });
         });
         
-        // Initialize animations on page load
+        // Initialize hero animations
         document.addEventListener('DOMContentLoaded', () => {
-            // Trigger hero animations
             setTimeout(() => {
                 document.querySelector('.hero h1').style.animation = 'fadeInUp 1s forwards';
                 document.querySelector('.hero p').style.animation = 'fadeInUp 1s forwards';
